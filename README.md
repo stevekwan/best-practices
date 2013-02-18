@@ -14,21 +14,24 @@ This guide was authored by Steve Kwan, Project Lead on the PULSE engineering tea
 The good news is, this book is very short.  The bad news is, it's very dense and will likely require a lot of thinking and re-reading.  But The Good Parts is, in my mind, the definitive guide on how an engineer should approach JavaScript.  If you take nothing else aware from this article, please take away this: read The Good Parts.
 
 ### [Constructors considered mildly confusing, by Joost Diepenmaat](http://joost.zeekat.nl/constructors-considered-mildly-confusing.html)
-...
-
-### [W3Schools jQuery tutorials](http://www.w3schools.com/jquery/default.asp)
-If you are completely new to JavaScript, it's worth getting acquainted with jQuery.  For front-end developers, jQuery is absolutely essential.
+If you've ever been confused by how constructors and the prototype property work in JavaScript, this article does a very detailed job of explaining how they work.
 
 ### [jQuery API](http://api.jquery.com/)
-Once you're familiar with jQuery, I recommend you consult their API docs to learn all the library has to offer.
+jQuery is essential for the modern JavaScript developer.  I recommend you consult their API docs to learn all the library has to offer.
 
 ## If You're A Javascript Ninja, Read These:
 
 ### [The Surprisingly Elegant JavaScript Type Model, by Kannan Vijayan](http://vijayan.ca/blog/2012/02/21/javascript-type-model/)
 JavaScript's type model is deceptively complicated, but this article does the best job I've ever seen of explaining it.
 
+### [JavaScript Object vs Function experiment, by Steve Kwan](https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html)
+If you liked Kannan's article, you might like this.  It's a really trippy demonstration of the relationship between the Object and Function objects.
+
 ### [Partial Application in JavaScript, by Ben Alman](http://benalman.com/news/2012/09/partial-application-in-javascript/)
 Currying and partial function application are important, but advanced, concepts within functional languages like JavaScript.  When you're ready to truly master these concepts, this article is the best I've seen.  I learned a ton reading it.
+
+### [JavaScript constructor vs prototype experiment, by Steve Kwan](https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html)
+If you _really_ want to understand constructor vs prototype, here's an in-depth example I came up with.
 
 ## Common Javascript Gotchas:
 
@@ -94,7 +97,7 @@ As you can imagine, this causes a ton of confusion - particularly for new JavaSc
 
 If you're asking this question, it means you're getting knee-deep into JavaScript OOP.  Good for you!
 
-The first thing you need to know is that JavaScript does NOT use classical OOP.  It uses something called prototypal OOP.  This is very, very different.  If you really want to know how JavaScript OOP works, you need to read [The Good Parts](http://www.amazon.ca/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742).  Crockford does a better job of explaining it than I ever will.
+The first thing you need to know is that JavaScript does NOT use classical OOP.  It uses something called prototypal OOP.  This is very, very different.  If you really want to know how JavaScript OOP works, you need to read [Constructors considered mildly confusing, by Joost Diepenmaat](http://joost.zeekat.nl/constructors-considered-mildly-confusing.html).  Joost does a better job of explaining it than I ever will.
 
 But for the lazy, I'll summarize: JavaScript does not have any classes.  You don't create a class and spawn new objects off of it like in other languages.  Instead, you create a new object, and set its `prototype` property to point to the old one.
 
@@ -147,3 +150,90 @@ In the above example, we don't even need to give the function a name!  Instead, 
 
 ### Why does JavaScript have so many different ways to do the same thing?
 Because JavaScript is a poorly designed language in a lot of ways.  Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford](http://www.amazon.ca/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742).  He clearly outlines which pieces of the language you should ignore.
+
+## Best Practices We Follow:
+
+### Ensure your site still works without JavaScript. (DONE)
+<!--
+* In particular, links...progressive enhancement URL?
+-->
+
+### Use the Module Pattern.
+<!--
+* Provides scope
+* Provides public/private support
+* By default, works best for singletons (but can be used for true OOP)
+-->
+
+### When using the Module Pattern, keep your JavaScript public object as clean as possible. (DONE)
+<!--
+* Avoid polluting the global namespace.
+-->
+
+### Namespace your JavaScript if you need to refer to it elsewhere.
+
+### Anonymously scope JavaScript if you’re never going to call it elsewhere. (DONE)
+
+### Put your JavaScript right before the `<body>` tag.
+
+### Avoid document reflows.
+
+### Optimize the big things.
+<!--
+* Document reflows
+* Events that get fired ALL THE TIME (eg on resizing)
+-->
+
+### Be sure to unbind() before binding.
+<!--
+* Not strictly required, but a good defensive coding practices to prevent events from stacking up.
+* jQuery event functions stack, they don't replace.
+-->
+
+### Prevent FOUC.
+<!--
+* Wait until all content on the page has been loaded (can be detrimental to the UX)
+* Put some of the "styling" scripts in the <head> (be wary that this can be a VERY bad practice...)
+* CSS3 or JS fade-ins
+-->
+
+## Bad Practices We Avoid:
+
+### Treating JavaScript like a classical OOP language.
+<!--
+* Prototypal, not classical...read The Good Parts for more info
+* Classical OOP results in ugly and complicated JavaScript
+* Don't create crazy object structures in JS
+    * Rely on the DOM as your object model, or
+    * Rely on JSON REST results as your object model.
+-->
+
+### Inlining the crap out of functions and object literals.
+
+### Excessive optimization
+<!--
+* Caching selectors, especially long-term (at most cache for only a function's lifetime)
+* Going nuts with minification
+-->
+
+### Be wary of optimizations that try to "outsmart the browser."
+<!--
+* Inevitably go out of vogue quickly, eg. domain sharding
+-->
+
+## "Best" Practices We Disagree With:
+<!--
+Many of these come from: [JS adolescence](http://james.padolsey.com/javascript/js-adolescence/)
+-->
+
+### Putting all var declarations at the top.
+
+### Standardized whitespace, squiggly bracket placement.
+
+### Strict equality.
+
+### Selector caching (especially over the long term).
+
+### Combined variable declarations.
+
+### Excessive chaining?.
