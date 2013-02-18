@@ -1,12 +1,16 @@
 # JavaScript Coding Standards and Best Practices
 
-## Introduction
+## Introduction:
 
 This is the JavaScript best practices and standards guide for PULSE, the internal agency responsible for the EA SPORTS family of websites.
 
 Although this guide is primarily centered around front-end JavaScript, most of the practices here are equally applicable to back-end JavaScript in node.js.
 
-This guide was authored by Steve Kwan, Project Lead on the PULSE engineering team.  Steve can be contacted at [skwan@ea.com](mailto:skwan@ea.com).
+Author:  
+Steve Kwan, Project Lead, EASPORTS.com  
+Electronic Arts  
+[mail@stevekwan.com](mailto:mail@stevekwan.com)  
+[http://www.stevekwan.com/](http://www.stevekwan.com/)
 
 ## If You're A Javascript Noob, Read These:
 
@@ -153,30 +157,30 @@ Because JavaScript is a poorly designed language in a lot of ways.  Your best gu
 
 ## Best Practices We Follow:
 
-### Ensure your site still works without JavaScript. (DONE)
+### Ensure your site still works without JavaScript.
 <!--
 * In particular, links...progressive enhancement URL?
 -->
 
-### Use the Module Pattern.
+### Use the Module Pattern to encapsulate.
 <!--
 * Provides scope
 * Provides public/private support
 * By default, works best for singletons (but can be used for true OOP)
 -->
 
-### When using the Module Pattern, keep your JavaScript public object as clean as possible. (DONE)
+### When using the Module Pattern, keep your JavaScript public object as clean as possible.
 <!--
 * Avoid polluting the global namespace.
 -->
 
 ### Namespace your JavaScript if you need to refer to it elsewhere.
 
-### Anonymously scope JavaScript if you’re never going to call it elsewhere. (DONE)
+### Anonymously scope JavaScript if you’re never going to call it elsewhere.
 
 ### Put your JavaScript right before the `<body>` tag.
 
-### Avoid document reflows.
+### Avoid causing document reflows.
 
 ### Optimize the big things.
 <!--
@@ -184,13 +188,13 @@ Because JavaScript is a poorly designed language in a lot of ways.  Your best gu
 * Events that get fired ALL THE TIME (eg on resizing)
 -->
 
-### Be sure to unbind() before binding.
+### Be sure to `unbind()` before binding.
 <!--
 * Not strictly required, but a good defensive coding practices to prevent events from stacking up.
 * jQuery event functions stack, they don't replace.
 -->
 
-### Prevent FOUC.
+### Prevent flash of unstyled content (FOUC).
 <!--
 * Wait until all content on the page has been loaded (can be detrimental to the UX)
 * Put some of the "styling" scripts in the <head> (be wary that this can be a VERY bad practice...)
@@ -210,13 +214,13 @@ Because JavaScript is a poorly designed language in a lot of ways.  Your best gu
 
 ### Inlining the crap out of functions and object literals.
 
-### Excessive optimization
+### Excessive optimization.
 <!--
 * Caching selectors, especially long-term (at most cache for only a function's lifetime)
 * Going nuts with minification
 -->
 
-### Be wary of optimizations that try to "outsmart the browser."
+### Optimizations that try to "outsmart the browser."
 <!--
 * Inevitably go out of vogue quickly, eg. domain sharding
 -->
@@ -226,14 +230,14 @@ Because JavaScript is a poorly designed language in a lot of ways.  Your best gu
 Many of these come from: [JS adolescence](http://james.padolsey.com/javascript/js-adolescence/)
 -->
 
-### Putting all var declarations at the top.
+### Putting all `var` declarations at the top.
 
-### Standardized whitespace, squiggly bracket placement.
+### Obsessing over indentation, tabs vs spaces, and squiggly bracket placement.
 
-### Strict equality.
+### Obsessing over strict equality.
 
-### Selector caching (especially over the long term).
+### Caching selectors for long periods of time.
 
-### Combined variable declarations.
+### Combined `var` declarations.
 
-### Excessive chaining?.
+### Excessive chaining at the expense of readibility.
