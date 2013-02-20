@@ -7,11 +7,11 @@ JavaScript has a lot of weird behaviours that trip up noobs to the language - es
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
 Electronic Arts  
-[mail@stevekwan.com](mailto:mail@stevekwan.com)  
-[http://www.stevekwan.com/](http://www.stevekwan.com/)
+<mail@stevekwan.com>  
+<http://www.stevekwan.com/>
 
 Originally from my GitHub:  
-https://github.com/stevekwan/best-practices/
+<https://github.com/stevekwan/best-practices/>
 
 ## Common Javascript "Gotchas":
 
@@ -77,7 +77,7 @@ As you can imagine, this causes a ton of confusion - particularly for new JavaSc
 
 If you're asking this question, it means you're getting knee-deep into JavaScript OOP.  Good for you!
 
-The first thing you need to know is that JavaScript does NOT use classical OOP.  It uses something called prototypal OOP.  This is very, very different.  If you really want to know how JavaScript OOP works, you need to read [Constructors considered mildly confusing, by Joost Diepenmaat](http://joost.zeekat.nl/constructors-considered-mildly-confusing.html).  Joost does a better job of explaining it than I ever will.
+The first thing you need to know is that JavaScript does NOT use classical OOP.  It uses something called prototypal OOP.  This is very, very different.  If you really want to know how JavaScript OOP works, you need to read [Constructors considered mildly confusing, by Joost Diepenmaat][constructors-confusing].  Joost does a better job of explaining it than I ever will.
 
 But for the lazy, I'll summarize: JavaScript does not have any classes.  You don't create a class and spawn new objects off of it like in other languages.  Instead, you create a new object, and set its `prototype` property to point to the old one.
 
@@ -85,7 +85,7 @@ When you refer to an object's property, if that property doesn't exist JavaScrip
 
 So unlike the class/object model you see in other languages, JavaScript relies on a series of "parent pointers."
 
-`constructor` is a pointer to the function that gets called when you use the `new` keyword.  If you want to learn more about the prototype/constructor relationship, read [The Surprisingly Elegant JavaScript Type Model, by Kannan Vijayan](http://vijayan.ca/blog/2012/02/21/javascript-type-model/).  But be prepared to be confused.
+`constructor` is a pointer to the function that gets called when you use the `new` keyword.  If you want to learn more about the prototype/constructor relationship, read [The Surprisingly Elegant JavaScript Type Model, by Kannan Vijayan][javascript-type].  But be prepared to be confused.
 
 ### WTF is a closure?
 Closures are a concept that appear in pure functional languages like JavaScript, but they have started to trickle their way into other languages like PHP and C#.  For those unfamiliar, "closure" is a language feature that ensures variables never get destroyed if they are still required.
@@ -129,7 +129,7 @@ Because of closures, we can go one step further and do something cool like this!
 In the above example, we don't even need to give the function a name!  Instead, we execute it once with the () at the end, and forget about it.  Nobody can ever reference the function again, but _it still exists_.  And if someone clicks that button, it will still work!
 
 ### Why does JavaScript have so many different ways to do the same thing?
-Because JavaScript is a poorly designed language in a lot of ways.  Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford](http://www.amazon.ca/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742).  He clearly outlines which pieces of the language you should ignore.
+Because JavaScript is a poorly designed language in a lot of ways.  Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
 
 <!--
 ### Script tags in wrong place...one-pass
@@ -140,3 +140,14 @@ Because JavaScript is a poorly designed language in a lot of ways.  Your best gu
 ### excessive reflow
 ### accidental null return
 -->
+
+[gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
+[javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
+[good-parts]: http://shop.oreilly.com/product/9780596517748.do
+[constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html
+[jquery-api]: http://api.jquery.com/
+[javascript-type]: http://vijayan.ca/blog/2012/02/21/javascript-type-model/
+[partial-application]: http://benalman.com/news/2012/09/partial-application-in-javascript/
+[js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
+[object-function-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html
+[constructor-prototype-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html

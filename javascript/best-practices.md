@@ -9,35 +9,35 @@ Although this guide is primarily centered around front-end JavaScript, most of t
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
 Electronic Arts  
-[mail@stevekwan.com](mailto:mail@stevekwan.com)  
-[http://www.stevekwan.com/](http://www.stevekwan.com/)
+<mail@stevekwan.com>  
+<http://www.stevekwan.com/>
 
 Originally from my GitHub:  
-https://github.com/stevekwan/best-practices/
+<https://github.com/stevekwan/best-practices/>
 
 ## If You're A Javascript Noob, Read These:
 
-### [JavaScript: The Good Parts, by Douglas Crockford](http://www.amazon.ca/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742)
+### [JavaScript: The Good Parts, by Douglas Crockford][good-parts]
 The good news is, this book is very short.  The bad news is, it's very dense and will likely require a lot of thinking and re-reading.  But The Good Parts is, in my mind, the definitive guide on how an engineer should approach JavaScript.  If you take nothing else aware from this article, please take away this: read The Good Parts.
 
-### [Constructors considered mildly confusing, by Joost Diepenmaat](http://joost.zeekat.nl/constructors-considered-mildly-confusing.html)
+### [Constructors considered mildly confusing, by Joost Diepenmaat][constructors-confusing]
 If you've ever been confused by how constructors and the prototype property work in JavaScript, this article does a very detailed job of explaining how they work.
 
-### [jQuery API](http://api.jquery.com/)
+### [jQuery API][jquery-api]
 jQuery is essential for the modern JavaScript developer.  I recommend you consult their API docs to learn all the library has to offer.
 
 ## If You're A Javascript Ninja, Read These:
 
-### [The Surprisingly Elegant JavaScript Type Model, by Kannan Vijayan](http://vijayan.ca/blog/2012/02/21/javascript-type-model/)
+### [The Surprisingly Elegant JavaScript Type Model, by Kannan Vijayan][javascript-type]
 JavaScript's type model is deceptively complicated, but this article does the best job I've ever seen of explaining it.
 
-### [JavaScript Object vs Function experiment, by Steve Kwan](https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html)
+### [JavaScript Object vs Function experiment, by Steve Kwan][object-function-experiment]
 If you liked Kannan's article, you might like this.  It's a really trippy demonstration of the relationship between the Object and Function objects.
 
-### [Partial Application in JavaScript, by Ben Alman](http://benalman.com/news/2012/09/partial-application-in-javascript/)
+### [Partial Application in JavaScript, by Ben Alman][partial-application]
 Currying and partial function application are important, but advanced, concepts within functional languages like JavaScript.  When you're ready to truly master these concepts, this article is the best I've seen.  I learned a ton reading it.
 
-### [JavaScript constructor vs prototype experiment, by Steve Kwan](https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html)
+### [JavaScript constructor vs prototype experiment, by Steve Kwan][constructor-prototype-experiment]
 If you _really_ want to understand constructor vs prototype, here's an in-depth example I came up with.
 
 ## Best Practices We Follow:
@@ -117,7 +117,7 @@ This section is a work in progress.  I'll eventually add details, explanations a
 ## "Best" Practices We Disagree With:
 This section is a work in progress.  I'll eventually add details, explanations and examples to each of the best practices.
 <!--
-Many of these come from: [JS adolescence](http://james.padolsey.com/javascript/js-adolescence/)
+Many of these come from: [JS adolescence][js-adolescence]
 -->
 
 ### Putting all `var` declarations at the top.
@@ -131,3 +131,14 @@ Many of these come from: [JS adolescence](http://james.padolsey.com/javascript/j
 ### Combined `var` declarations.
 
 ### Excessive chaining at the expense of readibility.
+
+[gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
+[javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
+[good-parts]: http://shop.oreilly.com/product/9780596517748.do
+[constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html
+[jquery-api]: http://api.jquery.com/
+[javascript-type]: http://vijayan.ca/blog/2012/02/21/javascript-type-model/
+[partial-application]: http://benalman.com/news/2012/09/partial-application-in-javascript/
+[js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
+[object-function-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html
+[constructor-prototype-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html
