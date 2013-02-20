@@ -11,7 +11,7 @@ Electronic Arts
 [http://www.stevekwan.com/](http://www.stevekwan.com/)
 
 Originally from my GitHub:  
-https://github.com/stevekwan/experiments/
+https://github.com/stevekwan/best-practices/
 
 ## Common Javascript "Gotchas":
 
