@@ -13,19 +13,27 @@ Originally from my GitHub:
 
 ## JavaScript:
 
-### [Common JavaScript "Gotchas"][gotchas]
+### [Common JavaScript "Gotchas"][javascript-gotchas]
 
-### [Standards and Best Practices Guide][javascript-best-practices]
+### [JavaScript Coding Standards and Best Practices Guide][javascript-best-practices]
+
+<!--
+JS optimizations?
+-->
 
 ## CSS:
 
 ### Nothing here yet.
 
 <!--
+### CSS Coding Standards and Best Practices Guide
+### Separation of concerns in CSS?
 ### 
+### CSS gotchas?
+### CSS optimizations?
 -->
 
-[gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
+[javascript-gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
 [javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
 [good-parts]: http://shop.oreilly.com/product/9780596517748.do
 [constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html

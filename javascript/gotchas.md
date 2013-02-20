@@ -132,16 +132,26 @@ In the above example, we don't even need to give the function a name!  Instead, 
 Because JavaScript is a poorly designed language in a lot of ways.  Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
 
 <!--
-### Script tags in wrong place...one-pass
-* script blocking? Ext sources
-### Overwriting prototype object
-### prototype vs \_\_proto\_\_
-### ready vs load vs inline
+Break into DOM vs straight-up JS?
+### How do I create a class?  How do I create public/private members? (should provide an experiement)
+### How do I do inheritance? Overwriting automatically-created prototype object (should provide an experiement)
+### WTF is \_\_proto\_\_?  (Chrome Inspector)  How is it different from prototype?
+### What are the differences between ready(), load(), and inline JavaScript?
+### What are the differences between bind(), delegate(), live(), and on()?
+### My function is always returning null, even though I'm providing a return value.  Why?
+### Pushing console.log() into production
+### JavaScript never executing because an error was thrown earlier
+### I'm trying to select a DOM element and it's coming back as undefined, even though I know it's there.  Why?
+
+JS optimizations:
+### Reducing HTTP requests
+### Minification
+### Script tags in wrong place...one-pass. Script blocking? Ext sources
 ### excessive reflow
-### accidental null return
+Do I even need to write this?  Has it not been handled better elsewhere?  Yahoo's guide is good.  Maybe I should just move the really important (and unique) ones into the best practices guide.
 -->
 
-[gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
+[javascript-gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
 [javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
 [good-parts]: http://shop.oreilly.com/product/9780596517748.do
 [constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html

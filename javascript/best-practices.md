@@ -65,29 +65,24 @@ This section is a work in progress.  I'll eventually add details, explanations a
 ### Anonymously scope JavaScript if you’re never going to call it elsewhere.
 
 ### Put your JavaScript right before the `<body>` tag.
+<!--
+There are exceptions, such as preventing FOUC.  Generally OK as the JS doesn't
+do any waiting for Ajax calls, major DOM restructuring, or number crunching.
+-->
 
-### Avoid causing document reflows.
-
-### Optimize the big things.
+### When optimizating, focus on the big things.
 <!--
 * Document reflows
 * Events that get fired ALL THE TIME (eg on resizing)
+* Minimizing HTTP requests (and even this is becoming less important than in the past)
+* Lazy loading big assets
 -->
 
-### Be sure to `unbind()` before binding.
+### `unbind()` all event handlers before binding.
 <!--
 * Not strictly required, but a good defensive coding practices to prevent events from stacking up.
 * jQuery event functions stack, they don't replace.
 -->
-
-### Prevent flash of unstyled content (FOUC).
-<!--
-* Wait until all content on the page has been loaded (can be detrimental to the UX)
-* Put some of the "styling" scripts in the <head> (be wary that this can be a VERY bad practice...)
-* CSS3 or JS fade-ins
--->
-
-### Avoid chains where you can't detect `null`/`undefined` mid-chain.
 
 ## Bad Practices We Avoid:
 This section is a work in progress.  I'll eventually add details, explanations and examples to each of the best practices.
@@ -102,6 +97,10 @@ This section is a work in progress.  I'll eventually add details, explanations a
 -->
 
 ### Inlining the crap out of functions and object literals.
+<!--
+* Bad because it leads to major readability issues
+* Also bad because it prevents you from accessing inline functions in the future.  And you usually need to if you want to safely unbind() before you bind()
+-->
 
 ### Excessive optimization.
 <!--
@@ -109,9 +108,23 @@ This section is a work in progress.  I'll eventually add details, explanations a
 * Going nuts with minification
 -->
 
-### Optimizations that try to "outsmart the browser."
+### Causing excessive document reflows.
+
+### Going overboard with minification.
 <!--
-* Inevitably go out of vogue quickly, eg. domain sharding
+Discuss how some pieces need to be cached across all pages on the site.
+-->
+
+### Really long function chains.
+<!--
+* Avoid chains where you can't detect `null`/`undefined` mid-chain.
+-->
+
+### Causing a flash of unstyled content (FOUC) due to late-loading JavaScript.
+<!--
+* Wait until all content on the page has been loaded (can be detrimental to the UX)
+* Put some of the "styling" scripts in the <head> (be wary that this can be a VERY bad practice...)
+* CSS3 or JS fade-ins
 -->
 
 ## "Best" Practices We Disagree With:
@@ -121,18 +134,29 @@ Many of these come from: [JS adolescence][js-adolescence]
 -->
 
 ### Putting all `var` declarations at the top.
+<!--
+Provide example of how this can cause bugs
+-->
 
 ### Obsessing over indentation, tabs vs spaces, and squiggly bracket placement.
 
 ### Obsessing over strict equality.
 
+### Optimizations that try to "outsmart the browser."
+<!--
+* Inevitably go out of vogue quickly, eg. domain sharding, minimizing HTTP requests (although this is still important)
+-->
+
 ### Caching selectors for long periods of time.
+<!--
+Provide example of how this can cause problems
+-->
 
 ### Combined `var` declarations.
 
 ### Excessive chaining at the expense of readibility.
 
-[gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
+[javascript-gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
 [javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
 [good-parts]: http://shop.oreilly.com/product/9780596517748.do
 [constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html
