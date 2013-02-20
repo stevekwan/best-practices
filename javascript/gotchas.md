@@ -2,9 +2,7 @@
 
 ## Introduction:
 
-This is the JavaScript best practices and standards guide for PULSE, the internal agency responsible for the EA SPORTS family of websites.
-
-Although this guide is primarily centered around front-end JavaScript, most of the practices here are equally applicable to back-end JavaScript in node.js.
+JavaScript has a lot of weird behaviours that trip up noobs to the language - especially those acquainted with more traditional OOP languages.  Hopefully this guide will provide a quickly scannable, easily understood list to save a lot of pain to those getting acquainted with the language.
 
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
