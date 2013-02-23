@@ -46,7 +46,7 @@ There are three common ways to define a function in JavaScript:
 
 The first option is bad because it declares a function like a variable, but without the `var` keyword.  Read the above point to understand why that's bad...it gets created as a global function!
 
-The second option is better, and is properly scoped, but it leads to a slightly more complicated syntax once you get into closures.  It can also cause your code to behave in ways you may not expect due to JavaScript variable hoisting.
+The second option is better, and is properly scoped, but it leads to a slightly more complicated syntax once you get into closures.  It can also cause your code to behave in ways you may not expect due to [JavaScript variable hoisting][javascript:hoisting].
 
 The third option is almost the best, causes the fewest problems, and is syntactically consistent with the rest of your variables.
 
@@ -174,6 +174,7 @@ Do I even need to write this?  Has it not been handled better elsewhere?  Yahoo'
 [javascript-gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
 [javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
 [good-parts]: http://shop.oreilly.com/product/9780596517748.do
+[javascript-hoisting]: http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting
 [constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html
 [jquery-api]: http://api.jquery.com/
 [javascript-type]: http://vijayan.ca/blog/2012/02/21/javascript-type-model/
