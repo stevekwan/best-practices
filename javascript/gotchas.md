@@ -129,7 +129,7 @@ Because of closures, we can go one step further and do something cool like this!
 In the above example, we don't even need to give the function a name!  Instead, we execute it once with the () at the end, and forget about it.  Nobody can ever reference the function again, but _it still exists_.  And if someone clicks that button, it will still work!
 
 ### Why does JavaScript have so many different ways to do the same thing?
-Because JavaScript is a poorly designed language in a lot of ways.  Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
+So you can choose which way is best for you. Some parts of JavaScript are not designed that well. Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
 
 <!--
 Break into DOM vs straight-up JS?
