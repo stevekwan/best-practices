@@ -37,15 +37,18 @@ This is extremely bizarre behaviour, and really a stupid design decision in the 
 ### Why are there so many different ways to declare a function?  What are the differences?
 There are three common ways to define a function in JavaScript:
 
-    myFunction = function(arg1, arg2) {};     // NEVER do this!
-    function myFunction(arg1, arg2) {};       // This is OK, but...
-    var myFunction = function(arg1, arg2) {}; // This is best!
+    myFunction = function(arg1, arg2) {};                // NEVER do this!
+    function myFunction(arg1, arg2) {};                  // This is OK, but...
+    var myFunction = function(arg1, arg2) {};            // This is good, but...
+    var myFunction = function myFunction(arg1, arg2) {}; // This is even better!
 
 The first option is bad because it declares a function like a variable, but without the `var` keyword.  Read the above point to understand why that's bad...it gets created as a global function!
 
 The second option is better, and is properly scoped, but it leads to certain syntax problems once you get into closures.
 
-The third option is almost always the best, causes the fewest problems, and is syntactically consistent with the rest of your variables.
+The third option is almost the best, causes the fewest problems, and is syntactically consistent with the rest of your variables.
+
+To reduce your headache during debugging you should prefer the fourth version, which uses a named function.
 
 ### The `this` keyword: how does it behave?
 `this` in JavaScript does __not__ behave the way you would expect.  Its behaviour is very, very different from other languages.
