@@ -2,7 +2,7 @@
 
 ## Introduction:
 
-This is the JavaScript best practices and standards guide that I espouse at EA SPORTS.
+This is the JavaScript best practices and standards guide that we use at EA SPORTS.
 
 Although this guide is primarily centered around front-end JavaScript, most of the practices here are equally applicable to back-end JavaScript in node.js.
 

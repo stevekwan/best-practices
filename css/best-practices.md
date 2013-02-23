@@ -2,7 +2,7 @@
 
 ## Introduction:
 
-This is the CSS best practices and standards guide that I espouse at EA SPORTS.
+This is the CSS best practices and standards guide that we use at EA SPORTS.
 
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
