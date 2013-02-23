@@ -44,7 +44,7 @@ There are three common ways to define a function in JavaScript:
 
 The first option is bad because it declares a function like a variable, but without the `var` keyword.  Read the above point to understand why that's bad...it gets created as a global function!
 
-The second option is better, and is properly scoped, but it leads to certain syntax problems once you get into closures.
+The second option is better, and is properly scoped, but it leads to a slightly more complicated syntax once you get into closures.
 
 The third option is almost the best, causes the fewest problems, and is syntactically consistent with the rest of your variables.
 
