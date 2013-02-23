@@ -71,6 +71,8 @@ But in the second example, because `myFunction` wasn't a property of anything, t
 
 The important take-away here is that __`this` points to whatever is "left of the dot."__
 
+In a constructor function (function used with the `new` keyword), `this` references the new object being created. In `call` and `apply`, `this` had different rules, as specified on the tin.
+
 As you can imagine, this causes a ton of confusion - particularly for new JavaScript developers.  My recommendation is to avoid writing code in such a way that this becomes a problem.  In fact, I try to avoid using `this` for anything but the obvious.
 
 ### WTF are .constructor and .prototype?
