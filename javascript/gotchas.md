@@ -4,7 +4,9 @@
 
 JavaScript has a lot of weird behaviours that trip up noobs to the language - especially those acquainted with more traditional OOP languages.  Hopefully this guide will provide a quickly scannable, easily understood list to save a lot of pain to those getting acquainted with the language.
 
-An important note: this list is NOT intended to be a 100% comprehensive list of "gotchas."  We will definitely speed past some of the more minute details of why JavaScript behaves the way it does.  The goal is to get new JavaScript developers past the initial "hump" where the language may not behave like what they're used to.
+The intended audience for this article are engineers from other programming languages who are working with JavaScript for the first time.  This article will not focus on the nitty-gritty details, but will attempt to get you past the early hurdles quickly.
+
+An important note: this list is NOT intended to be a 100% comprehensive list of "gotchas."  We will definitely speed past some of the more minute details of why JavaScript behaves the way it does.
 
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
