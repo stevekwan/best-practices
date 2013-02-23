@@ -95,7 +95,7 @@ So unlike the class/object model you see in other languages, JavaScript relies o
 `constructor` is a pointer to the function that gets called when you use the `new` keyword.  If you want to learn more about the prototype/constructor relationship, read [The Surprisingly Elegant JavaScript Type Model, by Kannan Vijayan][javascript-type].  But be prepared to be confused.
 
 ### WTF is a closure?
-Closures are a concept that appear in pure functional languages like JavaScript, but they have started to trickle their way into other languages like PHP and C#.  For those unfamiliar, "closure" is a language feature that ensures variables never get destroyed if they are still required.
+Closures are a concept that appear in functional languages like JavaScript, but they have started to trickle their way into other languages like PHP and C#.  For those unfamiliar, "closure" is a language feature that ensures variables never get destroyed if they are still required.
 
 This explanation is not particularly meaningful in and of itself, so here's an example:
 
