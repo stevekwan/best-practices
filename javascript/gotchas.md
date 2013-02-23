@@ -135,7 +135,7 @@ Because of closures, we can go one step further and do something cool like this!
 
 In the above example, we don't even need to give the function a name!  Instead, we execute it once with the () at the end, and forget about it.  Nobody can ever reference the function again, but _it still exists_.  And if someone clicks that button, it will still work!
 
-### parseInt() is a lie.
+### Why is parseInt() mucking up when I get into big numbers?
 Despite looking like it, JavaScript doesn't actually have an integer data type - it only has a floating point type.  This isn't an issue when you do:
 
     parseInt("1000000000000000",10)<parseInt("1000000000000001",10); //true
