@@ -128,16 +128,16 @@ Because of closures, we can go one step further and do something cool like this!
 
 In the above example, we don't even need to give the function a name!  Instead, we execute it once with the () at the end, and forget about it.  Nobody can ever reference the function again, but _it still exists_.  And if someone clicks that button, it will still work!
 
-### parseInt is a lie
-Despite looking like it does JavaScript doesn't actually have an integer data type, it only has a floating point type, this isn't an issue when you do
+### parseInt is a lie.
+Despite looking like it, JavaScript doesn't actually have an integer data type - it only has a floating point type.  This isn't an issue when you do:
 
-    parseInt("1000000000000000",10)<parseInt("1000000000000001",10);//true
+    parseInt("1000000000000000",10)<parseInt("1000000000000001",10); //true
 
-but add one more zero
+but add one more zero:
 
-    parseInt("10000000000000000",10)<parseInt("10000000000000001",10);//false
+    parseInt("10000000000000000",10)<parseInt("10000000000000001",10); //false
 
-Welcome to floating points
+Welcome to floating points.  :)
 
 ### Why does JavaScript have so many different ways to do the same thing?
 Because JavaScript is a poorly designed language in a lot of ways.  Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
