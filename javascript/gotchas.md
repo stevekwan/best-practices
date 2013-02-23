@@ -6,7 +6,7 @@ JavaScript has a lot of weird behaviours that trip up noobs to the language - es
 
 The intended audience for this article are engineers from other programming languages who are working with JavaScript for the first time.  This article will not focus on the nitty-gritty details, but will attempt to get you past the early hurdles quickly.
 
-An important note: this list is NOT intended to be a 100% comprehensive list of "gotchas."  We will definitely speed past some of the more minute details of why JavaScript behaves the way it does.
+An important note: this list is NOT intended to be a 100% comprehensive list of all "gotchas" in the JavaScript language - just the ones you're likely to encounter early.
 
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
@@ -34,7 +34,7 @@ But you should never, EVER use the latter.  See the comment for the reason why.
 
 If you ever forget the var keyword, your variable will be declared...but it will be scoped __globally__ (to the `window` object), rather than to the function it was declared in.
 
-This is extremely bizarre behaviour, and really a stupid design decision in the JavaScript language.  There are no pragmatic situations where you would want local variables to be declared globally.  So remember to __always__ use `var` in your declarations.
+This is extremely bizarre behaviour, and really an unfortunate design decision in the JavaScript language.  There are no pragmatic situations where you would want local variables to be declared globally.  So remember to __always__ use `var` in your declarations.
 
 ### Why are there so many different ways to declare a function?  What are the differences?
 There are three common ways to define a function in JavaScript:
