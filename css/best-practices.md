@@ -2,7 +2,7 @@
 
 ## Introduction:
 
-This is the CSS best practices and standards guide that we use at EA SPORTS.
+This is the CSS best practices and standards guide that we use at PULSE, the web agency for EA SPORTS.
 
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
