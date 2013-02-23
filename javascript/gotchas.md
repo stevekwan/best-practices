@@ -4,6 +4,8 @@
 
 JavaScript has a lot of weird behaviours that trip up noobs to the language - especially those acquainted with more traditional OOP languages.  Hopefully this guide will provide a quickly scannable, easily understood list to save a lot of pain to those getting acquainted with the language.
 
+An important note: this list is NOT intended to be a 100% comprehensive list of "gotchas."  We will definitely speed past some of the more minute details of why JavaScript behaves the way it does.  The goal is to get new JavaScript developers past the initial "hump" where the language may not behave like what they're used to.
+
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
 Electronic Arts  
@@ -128,7 +130,7 @@ Because of closures, we can go one step further and do something cool like this!
 
 In the above example, we don't even need to give the function a name!  Instead, we execute it once with the () at the end, and forget about it.  Nobody can ever reference the function again, but _it still exists_.  And if someone clicks that button, it will still work!
 
-### parseInt is a lie.
+### parseInt() is a lie.
 Despite looking like it, JavaScript doesn't actually have an integer data type - it only has a floating point type.  This isn't an issue when you do:
 
     parseInt("1000000000000000",10)<parseInt("1000000000000001",10); //true
