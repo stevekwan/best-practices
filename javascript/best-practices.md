@@ -154,7 +154,7 @@ Provide example of how this can cause problems
 
 ### Combined `var` declarations.
 
-### Excessive chaining at the expense of readibility.
+### Excessive function chaining at the expense of readibility.
 
 [javascript-gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
 [javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
