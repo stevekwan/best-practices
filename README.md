@@ -1,4 +1,4 @@
-# Standards and Best Practices
+# Coding Standards and Best Practices
 
 Standards and best practices guides for various front-end technologies.
 
