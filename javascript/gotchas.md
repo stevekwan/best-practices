@@ -48,9 +48,9 @@ The first option is bad because it declares a function like a variable, but with
 
 The second option is better, and is properly scoped, but it leads to a slightly more complicated syntax once you get into closures.  It can also cause your code to behave in ways you may not expect due to [JavaScript variable hoisting][javascript-hoisting].
 
-The third option is almost the best, causes the fewest problems, and is syntactically consistent with the rest of your variables.
+The third option is even better, and is syntactically consistent with the rest of your variables.
 
-To reduce your headache during debugging you should prefer the fourth version, which uses a named function.
+The fourth option is the best, because it uses a named function and should reduce headaches during debugging.
 
 ### The `this` keyword: how does it behave?
 `this` in JavaScript does __not__ behave the way you would expect.  Its behaviour is very, very different from other languages.
