@@ -67,7 +67,7 @@ This will make much more sense with an example:
     };
     var someObject = {};                // Create an empty object.  Same as: new Object();
     someObject.myFunction = myFunction; // Give someObject a property
-    someObject.myFunction();            // Logs someObject
+    someObject.myFunction();            // Logs Object
     myFunction();                       // Logs...Window?
 
 That's bizarre, isn't it?  Depending on how you call a function, its `this` pointer changes.
