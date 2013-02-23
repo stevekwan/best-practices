@@ -144,7 +144,7 @@ but add one more zero:
 Welcome to floating points.  :)
 
 ### Why does JavaScript have so many different ways to do the same thing?
-Because JavaScript is a poorly designed language in a lot of ways.  Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
+So you can choose which way is best for you. Some parts of JavaScript are not designed that well. Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
 
 <!--
 Break into DOM vs straight-up JS?
