@@ -65,7 +65,7 @@ This will make much more sense with an example:
     {
         console.log(this);
     };
-    var someObject = new Object();      // Create an object and initialize it to something empty
+    var someObject = {};                // Create an empty object.  Same as: new Object();
     someObject.myFunction = myFunction; // Give someObject a property
     someObject.myFunction();            // Logs someObject
     myFunction();                       // Logs...Window?
