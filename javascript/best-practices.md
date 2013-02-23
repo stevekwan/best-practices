@@ -15,10 +15,13 @@ Electronic Arts
 Originally from my GitHub:  
 <https://github.com/stevekwan/best-practices/>
 
-## If You're A Javascript Noob, Read These:
+## If You're A JavaScript Noob, Read These:
 
 ### [JavaScript: The Good Parts, by Douglas Crockford][good-parts]
 The good news is, this book is very short.  The bad news is, it's very dense and will likely require a lot of thinking and re-reading.  But The Good Parts is, in my mind, the definitive guide on how an engineer should approach JavaScript.  If you take nothing else aware from this article, please take away this: read The Good Parts.
+
+### [Best Practices for Speeding Up Your Site, by the Yahoo! Developer Network][yahoo-speed]
+In particular, check out the JavaScript section.  This is the best guideline for optimization I'm aware of.
 
 ### [Constructors considered mildly confusing, by Joost Diepenmaat][constructors-confusing]
 If you've ever been confused by how constructors and the prototype property work in JavaScript, this article does a very detailed job of explaining how they work.
@@ -26,7 +29,7 @@ If you've ever been confused by how constructors and the prototype property work
 ### [jQuery API][jquery-api]
 jQuery is essential for the modern JavaScript developer.  I recommend you consult their API docs to learn all the library has to offer.
 
-## If You're A Javascript Ninja, Read These:
+## If You're A JavaScript Ninja, Read These:
 
 ### [The Surprisingly Elegant JavaScript Type Model, by Kannan Vijayan][javascript-type]
 JavaScript's type model is deceptively complicated, but this article does the best job I've ever seen of explaining it.
@@ -156,13 +159,23 @@ Provide example of how this can cause problems
 
 ### Excessive function chaining at the expense of readibility.
 
+<!-- My CSS documentation -->
+[css-gotchas]: https://github.com/stevekwan/best-practices/blob/master/css/gotchas.md
+[css-best-practices]:https://github.com/stevekwan/best-practices/blob/master/css/best-practices.md
+[css-style-guide]:https://github.com/stevekwan/best-practices/blob/master/css/style-guide.md
+
+<!-- My JavaScript documentation -->
 [javascript-gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
 [javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
+[javascript-style-guide]:https://github.com/stevekwan/best-practices/blob/master/javascript/style-guide.md
+[object-function-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html
+[constructor-prototype-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html
+
+<!-- External documentation -->
 [good-parts]: http://shop.oreilly.com/product/9780596517748.do
 [constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html
 [jquery-api]: http://api.jquery.com/
 [javascript-type]: http://vijayan.ca/blog/2012/02/21/javascript-type-model/
 [partial-application]: http://benalman.com/news/2012/09/partial-application-in-javascript/
 [js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
-[object-function-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html
-[constructor-prototype-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html
+[yahoo-speed]: http://developer.yahoo.com/performance/rules.html
