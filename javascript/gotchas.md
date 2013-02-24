@@ -26,11 +26,13 @@ Let's talk about some of the JavaScript 101 problems that noobs to the language 
 ### The `var` keyword: what exactly does it do?
 `var` declares a variable.  But...you don't need it.  Both these will work:
 
-    var myFunction = function()
-    {
-        var foo = 'Hello'; // Declares foo, scoped to myFunction
-        bar = 'Hello';     // Declares bar...in global scope?
-    };
+```js
+var myFunction = function()
+{  
+    var foo = 'Hello'; // Declares foo, scoped to myFunction
+    bar = 'Hello';     // Declares bar...in global scope?
+};
+```
 
 But you should never, EVER use the latter.  See the comment for the reason why.
 
@@ -41,9 +43,11 @@ This is extremely bizarre behaviour, and really an unfortunate design decision i
 ### Why are there so many different ways to declare a function?  What are the differences?
 There are three common ways to define a function in JavaScript:
 
-    myFunction1 = function(arg1, arg2) {};     // NEVER do this!
-    function myFunction2(arg1, arg2) {};       // This is OK, but...
-    var myFunction3 = function(arg1, arg2) {}; // This is best!
+```js
+myFunction1 = function(arg1, arg2) {};     // NEVER do this!
+function myFunction2(arg1, arg2) {};       // This is OK, but...
+var myFunction3 = function(arg1, arg2) {}; // This is best!
+```
 
 The first option is bad because it declares a function like a variable, but without the `var` keyword.  Read the above point to understand why that's bad...it gets created as a global function!
 
@@ -53,7 +57,9 @@ The third option is best, and is syntactically consistent with the rest of your 
 
 As an alternative to the third option, you can use:
 
-    var myFunction4 = function myFunction4(arg1, arg2) {};
+```js
+var myFunction4 = function myFunction4(arg1, arg2) {};
+```
 
 Although more verbose, this option can be useful because it provides a little more context when debugging.
 
@@ -66,14 +72,16 @@ In more sane languages, `this` gets you a pointer to the current object.  But in
 
 This will make much more sense with an example:
 
-    var myFunction = function()
-    {
-        console.log(this);
-    };
-    var someObject = {};                // Create an empty object.  Same as: new Object();
-    someObject.myFunction = myFunction; // Give someObject a property
-    someObject.myFunction();            // Logs Object
-    myFunction();                       // Logs...Window?
+```js
+var myFunction = function()
+{
+    console.log(this);
+};
+var someObject = {};                // Create an empty object.  Same as: new Object();
+someObject.myFunction = myFunction; // Give someObject a property
+someObject.myFunction();            // Logs Object
+myFunction();                       // Logs...Window?
+```
 
 That's bizarre, isn't it?  Depending on how you call a function, its `this` pointer changes.
 
@@ -106,19 +114,21 @@ Closures are a concept that appear in functional languages like JavaScript, but 
 
 This explanation is not particularly meaningful in and of itself, so here's an example:
 
-    // When someone clicks a button, show a message.
-    var setup = function()
-    {
-        var clickMessage = "Hi there!";
-        $('button').click
-        (
-            function()
-            {
-                window.alert(clickMessage);
-            }
-        );
-    };
-    setup();
+```js
+// When someone clicks a button, show a message.
+var setup = function()
+{
+    var clickMessage = "Hi there!";
+    $('button').click
+    (
+        function()
+        {
+            window.alert(clickMessage);
+        }
+    );
+};
+setup();
+```
 
 In a language without closures such as C/C++, you'd likely get an error when that click handler fires because `clickMessage` will be undefined.  It'll have fallen out of scope long ago.
 
@@ -128,28 +138,34 @@ As you can imagine, closures are particularly useful when dealing with event han
 
 Because of closures, we can go one step further and do something cool like this!
 
-    (function()
-    {
-        var clickMessage = "Hi there!";
-        $('button').click
-        (
-            function()
-            {
-                window.alert(clickMessage);
-            }
-        );
-    })();
+```js
+(function()
+{
+    var clickMessage = "Hi there!";
+    $('button').click
+    (
+        function()
+        {
+            window.alert(clickMessage);
+        }
+    );
+})();
+```
 
 In the above example, we don't even need to give the function a name!  Instead, we execute it once with the () at the end, and forget about it.  Nobody can ever reference the function again, but _it still exists_.  And if someone clicks that button, it will still work!
 
 ### Why is parseInt() mucking up when I get into big numbers?
 Despite looking like it, JavaScript doesn't actually have an integer data type - it only has a floating point type.  This isn't an issue when you do:
 
-    parseInt("1000000000000000",10)<parseInt("1000000000000001",10); //true
+```js
+parseInt("1000000000000000", 10) < parseInt("1000000000000001", 10); //true
+```
 
 but add one more zero:
 
-    parseInt("10000000000000000",10)<parseInt("10000000000000001",10); //false
+```js
+parseInt("10000000000000000", 10) < parseInt("10000000000000001", 10); //false
+```
 
 And you'll see where the difference between integers and floating points manifests.
 
