@@ -4,6 +4,8 @@
 
 This is the JavaScript best practices and standards guide that we use at PULSE, the web agency for EA SPORTS.
 
+This is a community-driven document, so please feel free to contribute!
+
 Although this guide is primarily centered around front-end JavaScript, most of the practices here are equally applicable to back-end JavaScript in node.js.
 
 Author:  
