@@ -4,9 +4,11 @@
 
 JavaScript has a lot of weird behaviours that trip up noobs to the language - especially those acquainted with more traditional OOP languages.  Hopefully this guide will provide a quickly scannable, easily understood list to save a lot of pain to those getting acquainted with the language.
 
-The intended audience for this article are engineers from other programming languages who are working with JavaScript for the first time.  This article will not focus on the nitty-gritty details, but will attempt to get you past the early hurdles quickly.
+The intended audience for this article are engineers from other programming languages who are working with JavaScript for the first time.  This article will not focus on detailed explanations of why the language works the way it does.  It's merely intended to get you past the early hurdles quickly.
 
-An important note: this list is NOT intended to be a 100% comprehensive list of all "gotchas" in the JavaScript language - just the ones you're likely to encounter early.
+JavaScript is a flexible language with many ways to achieve the same result.  What I document below is not the single "best" way.  Rather, it's a series of strategies I use to write code in such a way that it is less confusing to people new to the language.
+
+If you take nothing else away from this article, I __highly__ recommend you read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  It's the single best resource I'm aware of for getting new JavaScript developers up to speed.
 
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
@@ -39,23 +41,26 @@ This is extremely bizarre behaviour, and really an unfortunate design decision i
 ### Why are there so many different ways to declare a function?  What are the differences?
 There are three common ways to define a function in JavaScript:
 
-    myFunction = function(arg1, arg2) {};                // NEVER do this!
-    function myFunction(arg1, arg2) {};                  // This is OK, but...
-    var myFunction = function(arg1, arg2) {};            // This is good, but...
-    var myFunction = function myFunction(arg1, arg2) {}; // This is even better!
+    myFunction1 = function(arg1, arg2) {};     // NEVER do this!
+    function myFunction2(arg1, arg2) {};       // This is OK, but...
+    var myFunction3 = function(arg1, arg2) {}; // This is best!
 
 The first option is bad because it declares a function like a variable, but without the `var` keyword.  Read the above point to understand why that's bad...it gets created as a global function!
 
 The second option is better, and is properly scoped, but it leads to a slightly more complicated syntax once you get into closures.  It can also cause your code to behave in ways you may not expect due to [JavaScript variable hoisting][javascript-hoisting].
 
-The third option is even better, and is syntactically consistent with the rest of your variables.
+The third option is best, and is syntactically consistent with the rest of your variables.
 
-The fourth option is the best, because it uses a named function and should reduce headaches during debugging.
+As an alternative to the third option, you can use:
+
+    var myFunction4 = function myFunction4(arg1, arg2) {};
+
+Although more verbose, this option can be useful because it provides a little more context when debugging.
 
 ### The `this` keyword: how does it behave?
 `this` in JavaScript does __not__ behave the way you would expect.  Its behaviour is very, very different from other languages.
 
-If you are new to JavaScript, I suggest avoiding the `this` keyword until you get comfortable with the basics of the language.  But when you are comfortable, here's an explanation...
+If you are merely looking for a way to encapsulate and scope your code, I suggest avoiding the `this` keyword for now.  But if you truly need to use `this` to write object-oriented JavaScript, here's an explanation...
 
 In more sane languages, `this` gets you a pointer to the current object.  But in JavaScript, it means something quite different: it gets you a pointer to the __calling context__ of the given function.
 
@@ -78,9 +83,9 @@ But in the second example, because `myFunction` wasn't a property of anything, t
 
 The important take-away here is that __`this` points to whatever is "left of the dot."__
 
-Note that you can actually override what `this` points to by using the built-in `call` and `apply` functions.
+Note that you can actually override what `this` points to by using the built-in `call()` and `apply()` functions.
 
-As you can imagine, this causes a ton of confusion - particularly for new JavaScript developers.  My recommendation is to avoid writing code in such a way that this becomes a problem.  In fact, I try to avoid using `this` for anything but the obvious.
+As you can imagine, this causes a ton of confusion - particularly for new JavaScript developers.  My recommendation is to avoid writing code in such a way that relies on the intricacies of `this`.
 
 ### WTF are .constructor and .prototype?
 
@@ -146,7 +151,7 @@ but add one more zero:
 
     parseInt("10000000000000000",10)<parseInt("10000000000000001",10); //false
 
-Welcome to floating points.  :)
+And you'll see where the difference between integers and floating points manifests.
 
 ### Why does JavaScript have so many different ways to do the same thing?
 So you can choose which way is best for you. Some parts of JavaScript are not designed that well. Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
@@ -162,13 +167,6 @@ Break into DOM vs straight-up JS?
 ### Pushing console.log() into production
 ### JavaScript never executing because an error was thrown earlier
 ### I'm trying to select a DOM element and it's coming back as undefined, even though I know it's there.  Why?
-
-JS optimizations:
-### Reducing HTTP requests
-### Minification
-### Script tags in wrong place...one-pass. Script blocking? Ext sources
-### excessive reflow
-Do I even need to write this?  Has it not been handled better elsewhere?  Yahoo's guide is good.  Maybe I should just move the really important (and unique) ones into the best practices guide.
 -->
 
 [javascript-gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
