@@ -95,19 +95,135 @@ Note that you can actually override what `this` points to by using the built-in 
 
 As you can imagine, this causes a ton of confusion - particularly for new JavaScript developers.  My recommendation is to avoid writing code in such a way that relies on the intricacies of `this`.
 
-### WTF are .constructor and .prototype?
+### WTF are `constructor` and `prototype`?
 
 If you're asking this question, it means you're getting knee-deep into JavaScript OOP.  Good for you!
 
 The first thing you need to know is that JavaScript does NOT use classical OOP.  It uses something called prototypal OOP.  This is very, very different.  If you really want to know how JavaScript OOP works, you need to read [Constructors considered mildly confusing, by Joost Diepenmaat][constructors-confusing].  Joost does a better job of explaining it than I ever will.
 
-But for the lazy, I'll summarize: JavaScript does not have any classes.  You don't create a class and spawn new objects off of it like in other languages.  Instead, you create a new object, and set its `prototype` property to point to the old one.
+But for the lazy, I'll summarize: JavaScript does not have any classes.  You don't create a class and spawn new objects off of it like in other languages.  Instead, you create a new object, and set its "prototype" as the old one.
 
-When you refer to an object's property, if that property doesn't exist JavaScript will look at the prototype object...and its prototype, and its prototype, all the way up until it hits the `Object` object.
+When you refer to an object's property, if that property doesn't exist JavaScript will look at its prototype...and its prototype, and its prototype, all the way up until it hits the `Object` object.
 
 So unlike the class/object model you see in other languages, JavaScript relies on a series of "parent pointers."
 
-`constructor` is a pointer to the function that gets called when you use the `new` keyword.  If you want to learn more about the prototype/constructor relationship, read [The Surprisingly Elegant JavaScript Type Model, by Kannan Vijayan][javascript-type].  But be prepared to be confused.
+`constructor` is a pointer to the function that gets called when you use the `new` keyword.  
+
+This is best explained with an in-depth code example, so read this [constructor vs prototype experiment][constructor-prototype-experiment] if you want to learn specifically how `constructor` and `prototype` play together.
+
+### WTF is `__proto__`, and how is it different from `prototype`?
+If you've tried debugging your JavaScript in Chrome Inspector, you may have noticed a `__proto__` property on all your objects.  Try copying and pasting this code Chrome Inspector's console, and dig into the `__proto__` property to see what I mean.
+
+```js
+var ParentObject = function()
+{
+    // If ParentObject had constructor code, it would go here
+};
+
+ParentObject.prototype.parentProperty = 'foo';
+
+// Again, note we're not using a classical OOP class/object relationship here.
+// In JavaScript, objects just "point" to their parent via prototypes.
+var ChildObject = new ParentObject();
+
+ChildObject.childProperty = 'bar';
+
+console.log("ChildObject:");
+console.dir(ChildObject);  // Outputs a viewable object
+
+console.log("ParentObject:");
+console.dir(ParentObject);
+```
+
+For me, that outputs a `ChildObject` that looks like this:
+
+```js
+ChildObject:
+ParentObject
+    childProperty: "bar"
+    __proto__: Object
+        constructor: function ()
+        parentProperty: "foo"
+        __proto__: Object
+```
+
+And a `ParentObject` that looks like this:
+```js
+ParentObject:
+function () { // If ParentObject had constructor code, it would go here }
+arguments: null
+caller: null
+length: 0
+name: ""
+prototype: Object
+    constructor: function ()
+    parentProperty: "foo"
+    __proto__: Object
+__proto__: function Empty() {}
+```
+
+I highly recommend checking this out yourself in Chrome Inspector, as it's a great debugging tool.
+
+Let's look at `ChildObject` first.  You'll notice it contains `childProperty`, which is what we would expect.  It also has a property called `__proto__`, which itself is an object.  Among its contents, it contains `parentProperty`.
+
+Knowing this, you could reasonably assume that `__proto__` is the same as `prototype`.  Unfortunately, that's incorrect.  The difference between `prototype` and `__proto__` is subtle, but it's very important.
+
+If you look at the output for `ParentObject`, you'll see that it contains both `__proto__` AND `prototype`, making the situation even more confusing.  So what's going on?
+
+Well, it turns out that every function gets an automatically-created property called `prototype`.  That's right, __every__ function gets this property, because any function can be used as a constructor.  As we discussed earlier, JavaScript uses prototype properties like this to figure out your object inheritance chain.
+
+When you create a new object using the syntax:
+
+```js
+var ChildObject = new ParentObject();
+```
+
+JavaScript will look in `ParentObject`, find its `prototype` property, and copy it into `ChildObject`.  But it will __not__ copy it into `ChildObject` as `prototype`...it will copy it in as `__proto__`.
+
+So why not copy it in as `prototype`?  For a variety of reasons, the main one I am aware of being that it is totally possible for an object to have both a `prototype` __and__ a `__proto__`.  In fact, this is quite common, because all functions have a `prototype` and all objects have a `__proto__`.  Heck, take a look at our `ParentObject` up above...it definitely does.
+
+This can lead to an interesting scenario where you create a `ChildObject`, and then change the `prototype` property of the `ParentObject` later.  If you do this, `ChildObject` will _continue to use the old prototype_.
+
+Let's see an example:
+
+```js
+var ParentObject = function()
+{
+    // If ParentObject had constructor code, it would go here
+};
+
+ParentObject.prototype.parentProperty = 'foo';
+
+// Again, note we're not using a classical OOP class/object relationship here.
+// In JavaScript, objects just "point" to their parent via the prototype
+// property.
+var ChildObject = new ParentObject();
+
+ChildObject.childProperty = 'bar';
+
+delete ParentObject.prototype;
+
+console.log("ChildObject:");
+console.dir(ChildObject);
+```
+
+Even though we have removed the `prototype` property from `ParentObject`, outputting `ChildObject` will continue to look like this:
+
+```js
+ChildObject:
+ParentObject
+    childProperty: "bar"
+    __proto__: Object
+        constructor: function ()
+        parentProperty: "foo"
+        __proto__: Object
+```
+
+That's right, it will _still have its parent pointer_.
+
+So to recap: __`prototype` goes on constructors that create objects, and `__proto__` goes on objects being created.__
+
+One more thing: for the love of beer and pork tacos, please don't ever try to manipulate the `__proto__` pointer.  JavaScript is not supposed to support editing of `__proto__` as it is an internal property.  Some browsers will let you do it, but it's a bad idea to rely on this functionality.  If you need to manipulate the prototype chain you're better off using `hasOwnProperty()` instead.
 
 ### WTF is a closure?
 Closures are a concept that appear in functional languages like JavaScript, but they have started to trickle their way into other languages like PHP and C#.  For those unfamiliar, "closure" is a language feature that ensures variables never get destroyed if they are still required.
@@ -176,7 +292,6 @@ So you can choose which way is best for you. Some parts of JavaScript are not de
 Break into DOM vs straight-up JS?
 ### How do I create a class?  How do I create public/private members? (should provide an experiement)
 ### How do I do inheritance? Overwriting automatically-created prototype object (should provide an experiement)
-### WTF is \_\_proto\_\_?  (Chrome Inspector)  How is it different from prototype?
 ### What are the differences between ready(), load(), and inline JavaScript?
 ### What are the differences between bind(), delegate(), live(), and on()?
 ### My function is always returning null, even though I'm providing a return value.  Why?
