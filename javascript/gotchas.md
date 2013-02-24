@@ -221,7 +221,7 @@ ParentObject
 
 That's right, it will _still have its parent pointer_.
 
-So to recap: __`prototype` goes on constructors that create objects, and `__proto__` goes on objects being created.__
+So to recap: **`prototype` goes on constructors that create objects, and `__proto__` goes on objects being created.**
 
 One more thing: for the love of beer and pork tacos, please don't ever try to manipulate the `__proto__` pointer.  JavaScript is not supposed to support editing of `__proto__` as it is an internal property.  Some browsers will let you do it, but it's a bad idea to rely on this functionality.  If you need to manipulate the prototype chain you're better off using `hasOwnProperty()` instead.
 
