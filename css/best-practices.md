@@ -4,6 +4,8 @@
 
 This is the CSS best practices and standards guide that we use at PULSE, the web agency for EA SPORTS.
 
+This is a community-driven document, so please feel free to contribute!
+
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
 Electronic Arts  
