@@ -153,6 +153,7 @@ This section is a work in progress.  I'll eventually add details, explanations a
 [javascript-style-guide]:https://github.com/stevekwan/best-practices/blob/master/javascript/style-guide.md
 [object-function-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html
 [constructor-prototype-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html
+[module-pattern-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/module-pattern.html
 
 <!-- External documentation -->
 [good-parts]: http://shop.oreilly.com/product/9780596517748.do
@@ -162,3 +163,4 @@ This section is a work in progress.  I'll eventually add details, explanations a
 [partial-application]: http://benalman.com/news/2012/09/partial-application-in-javascript/
 [js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
 [yahoo-speed]: http://developer.yahoo.com/performance/rules.html
+[javascript-hoisting]: http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting
