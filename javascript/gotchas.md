@@ -289,25 +289,35 @@ And you'll see where the difference between integers and floating points manifes
 So you can choose which way is best for you. Some parts of JavaScript are not designed that well. Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
 
 <!--
-Break into DOM vs straight-up JS?
-### How do I create a class?  How do I create public/private members? (should provide an experiement)
+### How do I create a class?  How do I create public/private members?
 ### How do I do inheritance? Overwriting automatically-created prototype object (should provide an experiement)
 ### What are the differences between ready(), load(), and inline JavaScript?
 ### What are the differences between bind(), delegate(), live(), and on()?
 ### My function is always returning null, even though I'm providing a return value.  Why?
 ### Pushing console.log() into production
-### JavaScript never executing because an error was thrown earlier
+### Why is my JavaScript not executing (because an error was thrown earlier)
 ### I'm trying to select a DOM element and it's coming back as undefined, even though I know it's there.  Why?
 -->
 
+<!-- My CSS documentation -->
+[css-gotchas]: https://github.com/stevekwan/best-practices/blob/master/css/gotchas.md
+[css-best-practices]:https://github.com/stevekwan/best-practices/blob/master/css/best-practices.md
+[css-style-guide]:https://github.com/stevekwan/best-practices/blob/master/css/style-guide.md
+
+<!-- My JavaScript documentation -->
 [javascript-gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
 [javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
+[javascript-style-guide]:https://github.com/stevekwan/best-practices/blob/master/javascript/style-guide.md
+[object-function-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html
+[constructor-prototype-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html
+[module-pattern-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/module-pattern.html
+
+<!-- External documentation -->
 [good-parts]: http://shop.oreilly.com/product/9780596517748.do
-[javascript-hoisting]: http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting
 [constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html
 [jquery-api]: http://api.jquery.com/
 [javascript-type]: http://vijayan.ca/blog/2012/02/21/javascript-type-model/
 [partial-application]: http://benalman.com/news/2012/09/partial-application-in-javascript/
 [js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
-[object-function-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html
-[constructor-prototype-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html
+[yahoo-speed]: http://developer.yahoo.com/performance/rules.html
+[javascript-hoisting]: http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting
