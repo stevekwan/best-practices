@@ -2,7 +2,19 @@
 
 ## Introduction:
 
-This is the CSS best practices and standards guide that we use at PULSE, the web agency for EA SPORTS.
+This is a coding standards and best practices guide for CSS, and to a lesser extent, LESS.
+
+This document focuses on __pragmatism, not perfection__.  It does not focus on writing perfect code, but rather, code that will strike the best balance of __value for your time__.
+
+In particular, we are focused on writing CSS that:
+
+* does what it's supposed to do
+* is easily understood
+* is easily maintained.
+
+Anything above and beyond this is considered a nice-to-have, and is not the focus of this document.
+
+This attitude may not be appropriate for open-source projects, but it is definitely appropriate for projects where cost and schedule are key factors.
 
 This is a community-driven document, so please feel free to contribute!
 
