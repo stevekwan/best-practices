@@ -1,4 +1,4 @@
-# JavaScript Coding Standards and Best Practices
+# Pragmatic Standards: JavaScript Coding Standards and Best Practices
 
 ## Introduction:
 
@@ -182,10 +182,6 @@ However, in the real world this can be a valuable defensive coding practice to p
 
 It's probably a good idea to create a helper function that does the `unbind()`/`bind()` automatically, and logs an error if the code tries to double-bind.
 
-<!--
-### Support progressive rendering?  Is this better handled in a general optimization article?
--->
-
 ## Bad Practices We Avoid:
 Please submit a pull request if you have any suggestions to the bad practices below!
 
@@ -197,8 +193,6 @@ But JavaScript is absolutely _not_ a classically object-oriented language.  It's
 For starters, read [The Good Parts, by Douglas Crockford][good-parts].  Yes, this is not the first time you've read that recommendation in this document, but it's worth the read.  Crockford does an excellent job of explaining how JavaScript may not work the way you expect.
 
 <!--
-* Prototypal, not classical...read The Good Parts for more info
-* Classical OOP results in ugly and complicated JavaScript
 * Don't create crazy object structures in JS
     * Rely on the DOM as your object model, or
     * Rely on JSON REST results as your object model.
@@ -262,22 +256,85 @@ This kind of code is problematic because:
 * It prevents you from using the `unbind()`/`bind()` trick mentioned above.
 
 ### Excessive optimization.
-<!--
-* Caching selectors, especially long-term (at most cache for only a function's lifetime)
-* Going nuts with minification
--->
+Performant JavaScript is important.  But it's also important to identify if your improvements are providing noticeable benefit.  In some cases, your "improvements" may actually make performance worse!
+
+There are some optimizations that are _always_ worth doing, such as those listed in the best practices section above.  But some just aren't worth it.  If you are obsessing over optimizations to the point where you are talking about shaving off a millisecond or two, and the consequence to your optimizations is hard-to-maintain code, you need to rethink whether you are improving things or making them worse.
 
 ### Causing excessive document reflows.
+DOM modification is slow, because in addition to rebuilding the DOM tree, the browser must recalculate all element dimensions and see how they fit together.  This is _especially_ a problem when your elements are positioned via `static` (the default) or `relative` - and this is almost always the case.
 
-### Going overboard with minification.
-<!--
-Discuss how some pieces need to be cached across all pages on the site.
--->
+This is will make the user's browser stutter:
+
+```js
+var table = $('<table></table>');
+
+$('body').append(table);
+
+for (var i=0; i<10000; i++)
+{
+    $('table').append
+    (
+        '<tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>'
+    );
+}
+
+window.alert("Done!");
+```
+
+Keep your DOM modifications to a bare minimum.
+
+If you must make significant DOM modifications, try to batch up your DOM modifications and do them all at once.  
+
+If you cannot do them all at once, do your modifications in a document fragment and only append to your main document once.  At the very least that'll prevent the browser from having to do complex rendering while the elements are being added.
+
+Compare the performance of the snippet below to the one above.  The one below is much faster!
+
+```js
+var table = $('<table></table>');
+
+for (var i=0; i<10000; i++)
+{
+    $(table).append
+    (
+        '<tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>'
+    );
+}
+
+// Append the table at the end this time.  The document has not been modified
+// until we do this.
+$('body').append(table);
+
+window.alert("Done!");
+```
+
+### Going overboard with file concatenation.
+If you aren't automatically concatenating your JavaScript, you should be.  Combining all your JavaScript into fewer files results in fewer HTTP requests.  This is good for performance, not just for JavaScript, but for CSS as well.
+
+But concatenating everything into one big, compressed file is not always a good idea.  It's possible to go too far into this direction to the point where you're actually _hurting_ performance in the long term.
+
+Let's say, for example, that you crunch all your site's JavaScript into a single file.  That way it only needs to be downloaded once.  In the long term, this could be beneficial...but in the short term, your visitors will suffer a _dramatically increased load time_ on their first visit, because instead of loading one page's resources, they're loading a whole _site's_.
+
+So let's take it in the other direction: rather than having one big JavaScript file, we'll make a separate (but single) JavaScript file for each page.  That sounds great on paper, but there's a problem: it _doesn't make use of the browser's built-in caching abilities_.
+
+If a lot of your JavaScript is common across your entire site, you want the visitor's browser to cache that JavaScript rather than request it again.  However, if you've crunched all that "common" stuff into individual page bundles, the browser can no longer do this.
+
+The best solution is usually a compromise.  A good way to serve up cached JavaScript is to break things into two files:
+
+1. A "common" file containing JavaScript that is used everywhere
+2. A page-specific file containing JavaScript only used on the page requested.
 
 ### Really long function chains.
-<!--
-* Avoid chains where you can't detect `null`/`undefined` mid-chain.
--->
+Function chaining like this can be really handy:
+
+```js
+$('.some-element').click(handleClick).parents('.container')[0].slideDown();
+```
+
+This terse, abbreviated form of jQuery can be very clear and good for performance.  But you can also get yourself into trouble.
+
+In the above example, if the `.container` selector returns no results, you'll encounter a JavaScript error.
+
+Function chaining is great, but be wary of null or undefined values coming back mid-chain.
 
 ### Causing a flash of unstyled content (FOUC) due to late-loading JavaScript.
 <!--
@@ -298,8 +355,19 @@ Provide example of how this can cause bugs
 -->
 
 ### Obsessing over indentation, tabs vs spaces, and squiggly bracket placement.
+In this document I've used [Allman style][allman-style] indentation.  I find it far more elegant and readable than other styles.  I like its Gestalt.  But I fully understand I am in the minority on this, and I would never enforce this style on anyone else.  :)
+
+I would rather engineers be focused on writing quality semantic code that makes sense.  I don't want talent wasting hours of their time on squigglies and tabs, when we could do that job in minutes with a linter.
+
+It just isn't worth the effort obsessing over rigid indentation/squiggly rules.  Do what you think makes sense in the given context.  If your code is readable and clear, it should speak for itself regardless of the indentation style you choose.
+
+Just be prepared to have everything overwritten by my linter.  :)
 
 ### Obsessing over strict equality.
+
+The difference between `==` and `===` is important in JavaScript, _especially_ when checking against falsiness/truthiness.
+
+But with the exception of that case, it's not something I lose a lot of sleep over.  Yes, you should endeavour to use the right comparisons where appropriate, but this isn't the sort of thing that I would turn into a religious war.
 
 ### Optimizations that try to "outsmart the browser."
 <!--
@@ -337,3 +405,4 @@ Provide example of how this can cause problems
 [js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
 [yahoo-speed]: http://developer.yahoo.com/performance/rules.html
 [javascript-hoisting]: http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting
+[allman-style]: http://en.wikipedia.org/wiki/Indent_style#Allman_style
