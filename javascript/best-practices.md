@@ -370,7 +370,7 @@ Unfortunately, there is no good way to prevent this issue that I am aware of.  B
 
     When the browser parses your document, it executes JavaScript at the exact moment it encounters it.  So to minimize FOUC, you can bring your JavaScript and the elements it affects closer together.  Here's an example:
 
-    ```js
+    ```html
     <div class="fouc-affected-element">
         <script>
             // Do something with .fouc-affected-element to resolve the FOUC
