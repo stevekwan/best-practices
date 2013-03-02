@@ -289,6 +289,7 @@ And you'll see where the difference between integers and floating points manifes
 So you can choose which way is best for you. Some parts of JavaScript are not designed that well. Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
 
 <!--
+### Truthiness/Falsiness
 ### What is the difference between null, undefined and 'undefined'?
 ### How do I create a class?  How do I create public/private members?
 ### How do I do inheritance? Overwriting automatically-created prototype object (should provide an experiement)
