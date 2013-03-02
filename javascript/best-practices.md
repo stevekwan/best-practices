@@ -337,11 +337,52 @@ In the above example, if the `.container` selector returns no results, you'll en
 Function chaining is great, but be wary of null or undefined values coming back mid-chain.
 
 ### Causing a flash of unstyled content (FOUC) due to late-loading JavaScript.
-<!--
-* Wait until all content on the page has been loaded (can be detrimental to the UX)
-* Put some of the "styling" scripts in the <head> (be wary that this can be a VERY bad practice...)
-* CSS3 or JS fade-ins
--->
+We've all seen it: you load a website, it appears unstyled for a brief period, then it flickers into the right design.  You may not be able to reproduce the issue if you refresh the page.  What happened?
+
+This is called a flash of unstyled content, or FOUC.  It's an old problem originally stemming from incorrect placement of stylesheets in your markup.  However, FOUC is making a resurgence due to late-loading JavaScript that redecorates the page.
+
+It's common knowledge that putting your JavaScript at the bottom of your document leads to better performance.  However, if your JavaScript contains heavy DOM manipulation this may have the unpleasant side effect of your page being rendered twice: once without JavaScript, then a second time once your JavaScript is loaded.
+
+So what's the solution?  Well, you could move all your JavaScript back into the `<head>`, which will result in your JavaScript being loaded before the document itself.  Unfortunately, this causes a completely different (and worse) performance problem: now your page will not render _at all_ until all JavaScript is loaded.  So don't do that.
+
+Unfortunately, there is no good way to prevent this issue that I am aware of.  But there are some things you can do to alleviate the problem:
+
+* **Minimize the amount of DOM manipulation done in JavaScript.**  
+    As a rule, minimize or batch up DOM manipulations.  Document reflow is one of the biggest client-side performance hits you can incur.  There's a really in-depth explanation of reflow earlier in this document.
+* **Specify the `width`/`height` for the page elements that will be changed by JavaScript.**  
+    You can minimize the impact of FOUC by specifying dimensions on all the page regions that will be affected by late-loading JavaScript.
+
+    For example, if your JavaScript renders a component that will always be 200em tall, specify that height in CSS.  That way the browser knows how much space to allocate for your component before it has been loaded, and this will minimize document reflow and jitters when the content comes in.
+* **Mask the problem with CSS3 or JavaScript intro animations.**  
+    You can slap a quick band-aid over the problem by applying a fade-in or slide-in animation to the element being affected by FOUC.  This hides than problem rather than solving it, but in a lot of cases this may be good enough.
+
+    Note that if the offending late-loading JavaScript comes in _really_ late, masking the problem with an animation may not actually help because the animation will complete before the JavaScript gets executed.
+* **Block rendering until all content on the page has been loaded.**  
+    In most cases, this is a bad solution.  However, it's still worth discussing.
+
+    You can possible block progressive rendering by hiding the FOUC-affected regions, and only showing them once you know for certain all content is loaded (usually by trapping the `load` event).
+
+    However, blocking progressive rendering almost always makes the UX worse rather than better.  FOUC is bad, but it's often not as bad as refusing to show any content at all.  That said, there may be a few select cases where the FOUC is so offensive and performance-intensive that you need to investigate this option.
+* **Inline the offending JavaScript and put it beneath the affected DOM elements.**  
+    This is another of those "use sparingly" techniques, because it flies in the face of best practices.  It requires you to litter your DOM with embedded code, which is bad for myriad reasons.
+
+    However, in truly offensive cases of FOUC, this may be the "best" way to solve the problem.
+
+    When the browser parses your document, it executes JavaScript at the exact moment it encounters it.  So to minimize FOUC, you can bring your JavaScript and the elements it affects closer together.  Here's an example:
+
+    ```js
+    <div class="fouc-affected-element">
+        <script>
+            // Do something with .fouc-affected-element to resolve the FOUC
+            // issue
+        </script>
+        ...
+    </div>
+    ```
+
+    Again, I need to reiterate that this is a somewhat occult technique and should be used _very sparingly_.  It results in ugly, unmaintainable code.  But it also can fix FOUC quite cleanly in some situations.
+
+    If you _do_ choose to use this technique, be aware that `<script>` tags _block progressive rendering_.  So ensure that these inline `<script>` tags execute fast and have no external dependencies.  Don't do any Ajax calls in there.
 
 ## "Best" Practices We Disagree With:
 This section is a work in progress.  I'll eventually add details, explanations and examples to each of the best practices.
@@ -361,13 +402,13 @@ I would rather engineers be focused on writing quality semantic code that makes 
 
 It just isn't worth the effort obsessing over rigid indentation/squiggly rules.  Do what you think makes sense in the given context.  If your code is readable and clear, it should speak for itself regardless of the indentation style you choose.
 
-Just be prepared to have everything overwritten by my linter.  :)
+Just be prepared to have your formatting overwritten by my linter.  :)
 
 ### Obsessing over strict equality.
 
 The difference between `==` and `===` is important in JavaScript, _especially_ when checking against falsiness/truthiness.
 
-But with the exception of that case, it's not something I lose a lot of sleep over.  Yes, you should endeavour to use the right comparisons where appropriate, but this isn't the sort of thing that I would turn into a religious war.
+But with that exception, it's not something I lose a lot of sleep over.  Yes, you should endeavour to use `===`, but this isn't the sort of thing that I would turn into a religious war.
 
 ### Optimizations that try to "outsmart the browser."
 <!--
