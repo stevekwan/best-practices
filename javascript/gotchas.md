@@ -41,7 +41,7 @@ If you ever forget the var keyword, your variable will be declared...but it will
 This is extremely bizarre behaviour, and really an unfortunate design decision in the JavaScript language.  There are no pragmatic situations where you would want local variables to be declared globally.  So remember to __always__ use `var` in your declarations.
 
 ### Why are there so many different ways to declare a function?  What are the differences?
-There are three common ways to define a function in JavaScript:
+In the wild you'll most commonly see three types of function "declarations":
 
 ```js
 myFunction1 = function(arg1, arg2) {};     // NEVER do this!
@@ -49,11 +49,11 @@ function myFunction2(arg1, arg2) {};       // This is OK, but...
 var myFunction3 = function(arg1, arg2) {}; // This is best!
 ```
 
-The first option is bad because it declares a function like a variable, but without the `var` keyword.  Read the above point to understand why that's bad...it gets created as a global function!
+The first option, where `var myFunction1` cannot be found near it, is bad because it assigns the function to a global variable! Anyway it's just an assignement of a *function expression*.
 
-The second option is better, and is properly scoped, but it leads to a slightly more complicated syntax once you get into closures.  It can also cause your code to behave in ways you may not expect due to [JavaScript variable hoisting][javascript-hoisting].
+The second option is better, and is properly scoped, but it leads to a slightly more complicated syntax once you get into closures.  It can also cause your code to behave in ways you may not expect due to [JavaScript variable hoisting][javascript-hoisting]. It's called *function declaration*.
 
-The third option is best, and is syntactically consistent with the rest of your variables.
+The third option is best, and is syntactically consistent with the rest of your variables. This is again a *function expression*.
 
 As an alternative to the third option, you can use:
 
@@ -61,7 +61,17 @@ As an alternative to the third option, you can use:
 var myFunction4 = function myFunction4(arg1, arg2) {};
 ```
 
-Although more verbose, this option can be useful because it provides a little more context when debugging.
+Although more verbose, this option can be useful because it provides a little more context when debugging. That's because a *named function expression* gives the function a `name` property, which reflects the actual name. In fact:
+
+```js
+var myFunction5 = function aDifferentName() {};
+
+console.log(myFunction5.name); // logs "aDifferentName"
+```
+
+This behaviour happens also to *function declarations* (option 2 in the previous code snippet).
+
+Minification could change the name for you to save bytes, so pay a lot of attention to function names, they could be different from the original. [UglifyJS][uglifyjs] for example has an option to switch off the function name mangling.
 
 ### The `this` keyword: how does it behave?
 `this` in JavaScript does __not__ behave the way you would expect.  Its behaviour is very, very different from other languages.
@@ -322,3 +332,4 @@ So you can choose which way is best for you. Some parts of JavaScript are not de
 [js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
 [yahoo-speed]: http://developer.yahoo.com/performance/rules.html
 [javascript-hoisting]: http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting
+[uglifyjs]: https://github.com/mishoo/UglifyJS
