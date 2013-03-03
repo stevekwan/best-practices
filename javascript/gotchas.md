@@ -1,6 +1,6 @@
 # Common JavaScript "Gotchas"
 
-## Introduction:
+## Introduction
 
 JavaScript has a lot of weird behaviours that trip up noobs to the language - especially those acquainted with more traditional OOP languages.  Hopefully this guide will provide a quickly scannable, easily understood list to save a lot of pain to those getting acquainted with the language.
 
@@ -19,7 +19,7 @@ Electronic Arts
 Originally from my GitHub:  
 <https://github.com/stevekwan/best-practices/>
 
-## Common Javascript "Gotchas":
+## Common Javascript "Gotchas"
 
 Let's talk about some of the JavaScript 101 problems that noobs to the language encounter.  If you're relatively unfamiliar with JavaScript, I highly recommend you read this section - it'll save you a lot of pain down the road.
 
