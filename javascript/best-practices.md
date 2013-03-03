@@ -192,12 +192,6 @@ But JavaScript is absolutely _not_ a classically object-oriented language.  It's
 
 For starters, read [The Good Parts, by Douglas Crockford][good-parts].  Yes, this is not the first time you've read that recommendation in this document, but it's worth the read.  Crockford does an excellent job of explaining how JavaScript may not work the way you expect.
 
-<!--
-* Don't create crazy object structures in JS
-    * Rely on the DOM as your object model, or
-    * Rely on JSON REST results as your object model.
--->
-
 ### Inlining the crap out of functions and object literals.
 I don't know about you, but I find nested code like this to be really hard to follow:
 
@@ -385,15 +379,107 @@ Unfortunately, there is no good way to prevent this issue that I am aware of.  B
     If you _do_ choose to use this technique, be aware that `<script>` tags _block progressive rendering_.  So ensure that these inline `<script>` tags execute fast and have no external dependencies.  Don't do any Ajax calls in there.
 
 ## "Best" Practices We Disagree With:
-This section is a work in progress.  I'll eventually add details, explanations and examples to each of the best practices.
-<!--
-Many of these come from: [JS adolescence][js-adolescence]
--->
+These are strategies which are generally considered best practices elsewhere within the community, but that I feel are unessential at best, and counterproductive at worst.  Most of my objections to these "best" practices stem from code defensiveness and pragmatic time management.  I'll outline specifics below.
 
-### Putting all `var` declarations at the top.
-<!--
-Provide example of how this can cause bugs
--->
+Many of these come from: [JS adolescence, by James Padolsey][js-adolescence].
+
+### Combined `var` declarations.
+JavaScript variables are commonly defined in a single chain, such as:
+
+```js
+var header,
+    topnav,
+    content;
+```
+
+As far as I'm concerned, this style of variable declaration in JavaScript is far too fragile and easily broken.
+
+Let's walk through a realistic example.  Say we decide that we want to provide initial assignments to these variables, so we adjust them like so:
+
+```js
+var header = $('.header')
+    topnav = $('.topnav'),
+    content = $('.content');
+```
+
+Did you catch the problem above?  A lot of people wouldn't - it's easy to miss it at first glance.  While adding the initial assignments, we "accidentally" lost a comma at the end of the `header` declaration.
+
+But that typo isn't as interesting as the bug it'll cause.  In JavaScript, semicolons should be added at the end of every statement, but they're not required.  The code above will generate no error messages, no warnings...but it will create a serious bug.
+
+Because the line `var header = $('.header')` is valid JavaScript even without the trailing comma, the parser will go ahead and "insert" a semicolon for you.  By doing this, it effectively interprets the code as:
+
+```js
+var header = $('.header');
+    topnav = $('.topnav'),
+    content = $('.content');
+```
+
+This breaks the `topnav` and `content` declarations into a separate statement, and these are now variable declarations _without the `var` keyword_.  Those variables will now be _ejected into the global namespace_, regardless of how you tried to scope them.
+
+I prefer to declare variables as separate statements:
+
+```js
+var firstVar;
+var secondVar;
+var thirdVar;
+```
+
+A lot of JavaScript developers dislike this syntax, and the objections are usually:
+
+* It's worse for performance (because there are more bytes required)
+* It's unnecessarily long and harder to read.
+
+The performance issue is moot because it's a micro-optimization and a minifier will eliminate the difference anyway.  The length/readability issue is just a preference, not a universal constant.  And even if it were, the benefits of defensively programming this way (and the debugging time it will save) greatly outweigh any inconvenience caused by formatting.
+
+For these reasons I recommend _repeating the `var` keyword with each variable declaration_.
+
+### Putting all variable declarations at the top.
+Many JavaScript developers prefer to list all variable declarations at the top of a block, rather than peppering them throughout.  The argument is usually that the JavaScript language hoists variables to the top of a block anyway, so you might as well write your code to reflect that.
+
+However, I don't write my code to impress the parser.  I write it for the people after me who will have to understand it.  And I personally find code much easier to understand if variable declarations occur close to the context where they are being used.
+
+### Caching selectors for long periods of time.
+Reusing selectors is a good thing.  For example, you could refactor this:
+
+```js
+var initMenu = function()
+{
+    $('.menu').show();
+    $('.menu').addClass('enabled');
+    $('.menu').click(handleClick);
+};
+```
+
+into this:
+
+```js
+var initMenu = function()
+{
+    var $menu = $('.menu'); // Cache the selector
+    $menu.show();
+    $menu.addClass('enabled');
+    $menu.click(handleClick);
+};
+```
+
+It's a good thing to reuse a selector multiple times, but it's much riskier to cache them _forever_.  This, for example, could get a bit dangerous:
+
+```js
+var $menu = $('.menu'); // Cache the selector FOREVER!
+
+var initMenu = function()
+{
+    $menu.show();
+    $menu.addClass('enabled');
+    $menu.click(handleClick);
+};
+```
+
+This code is fine, but be wary of the fact that on most modern webpages the DOM is constantly changing.  A selector cached for a long period of time could eventually wind up failing you.
+
+If you have event handlers that fire much later (such as that `handleClick` handler we're referencing), you may find yourself in a situation where they attempt to use the selector and it's now invalid.  This can result in unexpected bugs that may not be easily caught.
+
+Yes, you can shave off a few milliseconds by caching selectors, but don't cache them for _too_ long or the risk of bugs starts to increase.  I prefer to err on the side of caution and _cache selectors only for the block they're used in_.
 
 ### Obsessing over indentation, tabs vs spaces, and squiggly bracket placement.
 In this document I've used [Allman style][allman-style] indentation.  I find it far more elegant and readable than other styles.  I like its Gestalt.  But I fully understand I am in the minority on this, and I would never enforce this style on anyone else.  :)
@@ -411,18 +497,13 @@ The difference between `==` and `===` is important in JavaScript, _especially_ w
 But with that exception, it's not something I lose a lot of sleep over.  Yes, you should endeavour to use `===`, but this isn't the sort of thing that I would turn into a religious war.
 
 ### Optimizations that try to "outsmart the browser."
-<!--
-* Inevitably go out of vogue quickly, eg. domain sharding, minimizing HTTP requests (although this is still important)
--->
+Try to avoid using performance hacks that rely on browser idiosyncracies or the internals of the libraries you're using.
 
-### Caching selectors for long periods of time.
-<!--
-Provide example of how this can cause problems
--->
+Maybe you've discovered a CSS hack that tricks particular browsers into rendering the page quicker.  Or maybe you've discovered that due to the internals of a library you're using, you can eke out a small performance boost by passing in your parameters differently.  Before you modify your code to use these tricks, think about the long-term consequences.
 
-### Combined `var` declarations.
+If the benefit is huge, then it may be worth using your optimization.  But if the benefit is minor, ask yourself if you're filling your code with hacks for little benefit.  Will future developers look at your code and understand why you did things the way you did?  Will the user even notice a speed improvement?
 
-### Excessive function chaining at the expense of readibility.
+There are times when hacks are worth it, but bear in mind that they are ultimately hacks.  I would prefer good code that stands on its own and is not coupled to oddities inside the tools we use. 
 
 <!-- My CSS documentation -->
 [css-gotchas]: https://github.com/stevekwan/best-practices/blob/master/css/gotchas.md
