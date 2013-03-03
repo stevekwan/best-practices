@@ -317,6 +317,15 @@ Javascript minifiers such as YUI Compressor and UglifyJS often rename your funct
 ### I'm trying to select a DOM element and it's coming back as undefined, even though I know it's there.  Why?
 -->
 
+## Acknowledgements
+Thanks so much to the excellent Hacker News and Reddit communities for their input!  In particular, thanks to:
+
+[Pier Paolo Ramon](https://github.com/yuchi)  
+[Oliver Mader](https://github.com/b52)  
+[Calvin Metcalf](https://github.com/calvinmetcalf)  
+[Thomas Ballinger](https://github.com/thomasballinger)  
+[Edwin Martin](https://github.com/edwinm)
+
 <!-- Internal links -->
 [appendix-a]: #appendix-a
 
