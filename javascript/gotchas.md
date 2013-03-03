@@ -40,8 +40,8 @@ If you ever forget the var keyword, your variable will be declared...but it will
 
 This is extremely bizarre behaviour, and really an unfortunate design decision in the JavaScript language.  There are no pragmatic situations where you would want local variables to be declared globally.  So remember to __always__ use `var` in your declarations.
 
-### Why are there so many different ways to declare a function?  What are the differences?
-In the wild you'll most commonly see three types of function "declarations":
+### Why are there so many different ways to define a function?  What are the differences?
+In the wild, you'll most commonly see three types of function definitions:
 
 ```js
 myFunction1 = function(arg1, arg2) {};     // NEVER do this!
@@ -49,29 +49,15 @@ function myFunction2(arg1, arg2) {};       // This is OK, but...
 var myFunction3 = function(arg1, arg2) {}; // This is best!
 ```
 
-The first option, where `var myFunction1` cannot be found near it, is bad because it assigns the function to a global variable! Anyway it's just an assignement of a *function expression*.
+Assigning the function to a variable via the `=` operator is called a _function expression_.  This is what happens to `myFunction1` and `myFunction3`.  The syntax used with `myFunction2` is called _function declaration_.
 
-The second option is better, and is properly scoped, but it leads to a slightly more complicated syntax once you get into closures.  It can also cause your code to behave in ways you may not expect due to [JavaScript variable hoisting][javascript-hoisting]. It's called *function declaration*.
+Of the three options, the first option is bad because it assigns the function to a variable without the `var` keyword.  This creates a global variable!
 
-The third option is best, and is syntactically consistent with the rest of your variables. This is again a *function expression*.
+The second option is better, and is properly scoped, but it leads to a slightly more complicated syntax once you get into closures.  It can also cause your code to behave in ways you may not expect due to [JavaScript variable hoisting][javascript-hoisting].
 
-As an alternative to the third option, you can use:
+The third option is best, is syntactically consistent with the rest of your variables, and doesn't throw the function into global scope.
 
-```js
-var myFunction4 = function myFunction4(arg1, arg2) {};
-```
-
-Although more verbose, this option can be useful because it provides a little more context when debugging. That's because a *named function expression* gives the function a `name` property, which reflects the actual name. In fact:
-
-```js
-var myFunction5 = function aDifferentName() {};
-
-console.log(myFunction5.name); // logs "aDifferentName"
-```
-
-This behaviour happens also to *function declarations* (option 2 in the previous code snippet).
-
-Minification could change the name for you to save bytes, so pay a lot of attention to function names, they could be different from the original. [UglifyJS][uglifyjs] for example has an option to switch off the function name mangling.
+There are other ways to define a function which can be useful for debugging.  See [Appendix A][appendix-a] for details.
 
 ### The `this` keyword: how does it behave?
 `this` in JavaScript does __not__ behave the way you would expect.  Its behaviour is very, very different from other languages.
@@ -298,6 +284,26 @@ And you'll see where the difference between integers and floating points manifes
 ### Why does JavaScript have so many different ways to do the same thing?
 So you can choose which way is best for you. Some parts of JavaScript are not designed that well. Your best guide to muddle through it is to read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  He clearly outlines which pieces of the language you should ignore.
 
+<a name="appendix-a"></a>
+## Appendix A: Other ways to define a function
+As discussed earlier, there are many ways to define a function in JavaScript.  In addition to the syntaxes described earlier, you can use:
+
+```js
+var myFunction4 = function myFunction4(arg1, arg2) {};
+```
+
+Although more verbose, this option can be useful because it provides a little more context when debugging.  This is a _named function expression_, which gives the function a `name` property.  That property shows up when debugging.
+
+But be aware of which name is used:
+
+```js
+var myFunction5 = function aDifferentName(arg1, arg2) {};
+
+console.log(myFunction5.name); // logs "aDifferentName"
+```
+
+Javascript minifiers such as YUI Compressor and UglifyJS often rename your functions, which can reduce the usefulness of this technique.
+
 <!--
 ### Truthiness/Falsiness
 ### What is the difference between null, undefined and 'undefined'?
@@ -310,6 +316,9 @@ So you can choose which way is best for you. Some parts of JavaScript are not de
 ### Why is my JavaScript not executing (because an error was thrown earlier)
 ### I'm trying to select a DOM element and it's coming back as undefined, even though I know it's there.  Why?
 -->
+
+<!-- Internal links -->
+[appendix-a]: #appendix-a
 
 <!-- My CSS documentation -->
 [css-gotchas]: https://github.com/stevekwan/best-practices/blob/master/css/gotchas.md
@@ -333,4 +342,3 @@ So you can choose which way is best for you. Some parts of JavaScript are not de
 [js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
 [yahoo-speed]: http://developer.yahoo.com/performance/rules.html
 [javascript-hoisting]: http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting
-[uglifyjs]: https://github.com/mishoo/UglifyJS
