@@ -10,6 +10,8 @@ JavaScript is a flexible language with many ways to achieve the same result.  Wh
 
 If you take nothing else away from this article, I __highly__ recommend you read [JavaScript: The Good Parts, by Douglas Crockford][good-parts].  It's the single best resource I'm aware of for getting new JavaScript developers up to speed.
 
+Note that I use [Allman indentation style][allman] in this document, despite the fact that a large portion of the JavaScript community frowns upon it (and for reasons I don't completely disagree with).  However, I find this indention style to be much clearer and more readable than the alternatives.  I like its gestalt.  But please don't take my use of this indentation style as a suggestion that _all_ JavaScript should be written using Allman style.
+
 Author:  
 Steve Kwan, Project Lead, EASPORTS.com  
 Electronic Arts  
@@ -62,7 +64,7 @@ There are other ways to define a function which can be useful for debugging.  Se
 ### The `this` keyword: how does it behave?
 `this` in JavaScript does __not__ behave the way you would expect.  Its behaviour is very, very different from other languages.
 
-If you are merely looking for a way to encapsulate and scope your code, I suggest avoiding the `this` keyword for now.  But if you truly need to use `this` to write object-oriented JavaScript, here's an explanation...
+If you are merely looking for a way to encapsulate your code or create a Singleton, you may be better off using the Module Pattern ([here's an example][module-pattern-experiment]) than something relying on `this`.  But if you truly need to use `this` to write object-oriented JavaScript, here's an explanation...
 
 In more sane languages, `this` gets you a pointer to the current object.  But in JavaScript, it means something quite different: it gets you a pointer to the __calling context__ of the given function.
 
@@ -338,11 +340,13 @@ Thanks so much to the excellent Hacker News and Reddit communities for their inp
 [javascript-gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
 [javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
 [javascript-style-guide]:https://github.com/stevekwan/best-practices/blob/master/javascript/style-guide.md
+[module-pattern-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/module-pattern.html
 [object-function-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html
 [constructor-prototype-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html
 [module-pattern-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/module-pattern.html
 
 <!-- External documentation -->
+[allman]: http://en.wikipedia.org/wiki/Indent_style#Allman_style
 [good-parts]: http://shop.oreilly.com/product/9780596517748.do
 [constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html
 [jquery-api]: http://api.jquery.com/
@@ -351,3 +355,4 @@ Thanks so much to the excellent Hacker News and Reddit communities for their inp
 [js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
 [yahoo-speed]: http://developer.yahoo.com/performance/rules.html
 [javascript-hoisting]: http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting
+[idiomatic-js]: https://github.com/rwldrn/idiomatic.js/
