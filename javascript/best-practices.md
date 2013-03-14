@@ -20,9 +20,10 @@ This is a community-driven document, so please feel free to contribute!
 
 Although this guide is primarily centered around front-end JavaScript, most of the practices here are equally applicable to back-end JavaScript in node.js.
 
+Note that I use [Allman indentation style][allman] in this document, despite the fact that a large portion of the JavaScript community frowns upon it (and for reasons I don't completely disagree with).  However, I find this indention style to be much clearer and more readable than the alternatives.  I like its gestalt.  But please don't take my use of this indentation style as a suggestion that _all_ JavaScript should be written using Allman style.
+
 Author:  
-Steve Kwan, Project Lead, EASPORTS.com  
-Electronic Arts  
+Steve Kwan  
 <mail@stevekwan.com>  
 <http://www.stevekwan.com/>
 
@@ -514,11 +515,13 @@ There are times when hacks are worth it, but bear in mind that they are ultimate
 [javascript-gotchas]: https://github.com/stevekwan/best-practices/blob/master/javascript/gotchas.md
 [javascript-best-practices]: https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
 [javascript-style-guide]:https://github.com/stevekwan/best-practices/blob/master/javascript/style-guide.md
+[module-pattern-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/module-pattern.html
 [object-function-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/object-vs-function.html
 [constructor-prototype-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/constructor-vs-prototype.html
 [module-pattern-experiment]: https://github.com/stevekwan/experiments/blob/master/javascript/module-pattern.html
 
 <!-- External documentation -->
+[allman]: http://en.wikipedia.org/wiki/Indent_style#Allman_style
 [good-parts]: http://shop.oreilly.com/product/9780596517748.do
 [constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html
 [jquery-api]: http://api.jquery.com/
@@ -527,4 +530,4 @@ There are times when hacks are worth it, but bear in mind that they are ultimate
 [js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
 [yahoo-speed]: http://developer.yahoo.com/performance/rules.html
 [javascript-hoisting]: http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting
-[allman-style]: http://en.wikipedia.org/wiki/Indent_style#Allman_style
+[idiomatic-js]: https://github.com/rwldrn/idiomatic.js/

@@ -19,8 +19,7 @@ This attitude may not be appropriate for open-source projects, but it is definit
 This is a community-driven document, so please feel free to contribute!
 
 Author:  
-Steve Kwan, Project Lead, EASPORTS.com  
-Electronic Arts  
+Steve Kwan  
 <mail@stevekwan.com>  
 <http://www.stevekwan.com/>
 

@@ -13,8 +13,7 @@ If you take nothing else away from this article, I __highly__ recommend you read
 Note that I use [Allman indentation style][allman] in this document, despite the fact that a large portion of the JavaScript community frowns upon it (and for reasons I don't completely disagree with).  However, I find this indention style to be much clearer and more readable than the alternatives.  I like its gestalt.  But please don't take my use of this indentation style as a suggestion that _all_ JavaScript should be written using Allman style.
 
 Author:  
-Steve Kwan, Project Lead, EASPORTS.com  
-Electronic Arts  
+Steve Kwan  
 <mail@stevekwan.com>  
 <http://www.stevekwan.com/>
 
