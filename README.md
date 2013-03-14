@@ -3,8 +3,7 @@
 Standards and best practices guides for various front-end technologies.
 
 Author:  
-Steve Kwan, Project Lead, EASPORTS.com  
-Electronic Arts  
+Steve Kwan  
 <mail@stevekwan.com>  
 <http://www.stevekwan.com/>
 
