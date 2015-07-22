@@ -525,7 +525,7 @@ There are times when hacks are worth it, but bear in mind that they are ultimate
 [good-parts]: http://shop.oreilly.com/product/9780596517748.do
 [constructors-confusing]: http://joost.zeekat.nl/constructors-considered-mildly-confusing.html
 [jquery-api]: http://api.jquery.com/
-[javascript-type]: http://vijayan.ca/blog/2012/02/21/javascript-type-model/
+[javascript-type]: http://web.archive.org/web/20140205182624/http://vijayan.ca/blog/2012/02/21/javascript-type-model
 [partial-application]: http://benalman.com/news/2012/09/partial-application-in-javascript/
 [js-adolescence]: http://james.padolsey.com/javascript/js-adolescence/
 [yahoo-speed]: http://developer.yahoo.com/performance/rules.html
